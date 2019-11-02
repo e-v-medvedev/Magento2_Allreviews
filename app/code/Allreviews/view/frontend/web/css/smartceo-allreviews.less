@@ -1,0 +1,76 @@
+.allreviews-index-index {
+  h1 {
+     font-weight : 700;
+     font-size : 18px!important;
+     text-align : center;
+     font-family : 'Source Sans Pro';
+     display : block!important;
+  }
+
+}
+
+.allreviews {
+
+    display: flex;
+    flex-wrap: wrap;
+
+    .review {
+        display : flex;
+        margin : 10px;
+
+        .review-product-image {
+            min-width: 75px;
+        }
+
+        .review-content-wrapper {
+            display : flex;
+            flex-direction: column;
+
+            .review-header {
+                padding : 5px;
+                display : inline-block;  
+                float : none;
+                .rating-summary {
+                    margin-right: 10px;
+                }
+            }
+
+            .review-content {
+                padding : 5px;
+                margin: 0px!important;
+                white-space: normal!important;
+            }
+
+            .review-footer {
+                padding : 5px;
+                display : inline-block; 
+                float : none;
+            }
+
+        }
+
+    }
+}
+
+/*
+@media screen and (max-width: 768px) {
+    
+}
+*/
+
+@media screen and (min-width: 768px) {
+    .allreviews {
+        .review {
+            width: 47%;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .allreviews {
+        .review {
+            max-width : 100%;
+        }
+    }
+}
+

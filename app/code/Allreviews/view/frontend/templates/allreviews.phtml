@@ -1,0 +1,60 @@
+<?php /* ?>
+  <h1><?php echo __('Отзывы покупателей о магазине cdolls.ru') ?></h1>
+  <?php */ ?>
+<?php
+$objectManager = $this->getObjectManager();
+?>
+<div class="allreviews">
+	<?php foreach ($this->getAllreviews() as $_review) { ?>
+	  <?php $_product	 = $objectManager->create('Magento\Catalog\Model\Product')->load($_review->getEntityPkValue()); ?>
+
+	<?php
+	$reviewDate	 = $_review->getCreatedAt();
+	$datetime = new DateTime($reviewDate, new DateTimeZone('Europe/London'));
+	$datetime->setTimezone(new DateTimeZone('Europe/Moscow'));
+	$reviewDate = $datetime->format('d-m-Y');
+	?>
+
+    <div class="review">
+  	<div class="review-product-image">
+  	  <a href="<?php echo $_product->getProductUrl() ?>" alt="<?php echo $_product->getName() ?>">
+  		<img src="<?php echo $this->_imageHelperFactory->create()->init($_product,
+																   'product_thumbnail_image')->getUrl();
+  ?>" />
+  	  </a>
+  	</div>
+
+  	<div class="review-content-wrapper">
+  	  <div class="review-header">
+
+  		<span class="rating-summary">
+  		  <span class="rating-result">
+  			<span style="width:<?php echo $_review->getRatingSummary(); ?>%">
+  			  <span><?php echo $_review->getRatingSummary(); ?>%</span>
+  			</span>
+  		  </span>
+  		</span>
+
+  		<strong><?php echo $_product->getName(); ?></strong>
+  	  </div>
+  	  <div class="review-content">
+			<?php echo $_review->getDetail(); ?>
+  	  </div>
+  	  <div class="review-footer">
+  		<span><?php echo $_review->getNickname(); ?></span>
+  		<span><?php echo $reviewDate; ?></span>
+  	  </div>
+  	</div>
+    </div>
+  <?php } ?>
+</div>
+
+<?php if ($block->getPagerHtml()): ?>
+  <div class="order-products-toolbar toolbar bottom">
+	<?php echo $block->getPagerHtml(); ?>
+  </div>
+  <?php
+
+
+
+ endif ?>
